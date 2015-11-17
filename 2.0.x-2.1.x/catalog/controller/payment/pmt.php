@@ -34,6 +34,7 @@ class ControllerPaymentPmt extends Controller
           $data['discount'] = 'false';
         }
 
+        $data['phone'] = $order_info['telephone'];
         $data['amount'] = $this->currency->format($order_info['total'], $order_info['currency_code'], $order_info['currency_value'], false) * 100;
         $data['total'] = $this->currency->format($order_info['total'], $order_info['currency_code'], $order_info['currency_value'], false) * 100;
 
