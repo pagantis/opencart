@@ -28,8 +28,8 @@ foreach ($products as $i => $p ){
 <input type="hidden" name="phone" value="<?php echo $phone; ?>" />
 </form>
 <div class="buttons">
-    <div class="pull-right">
-    <input onclick="confirmSubmit();" value="<?php echo $button_confirm; ?>" id="button-confirm" class="btn btn-primary" type="button">
+    <div class="right">
+    <input onclick="confirmSubmit();" value="<?php echo $button_confirm; ?>" id="button-confirm" class="button" type="button">
   </div>
 </div>
 <script type="text/javascript">
