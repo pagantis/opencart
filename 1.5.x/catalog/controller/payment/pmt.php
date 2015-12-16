@@ -210,33 +210,25 @@ class ControllerPaymentPmt extends Controller
         $json = file_get_contents('php://input');
         $temp = json_decode($json, true);
         $data = $temp['data'];
+
+        // Verify notification
+        if ($this->config->get('pmt_test')) {
+            $this->key = $this->config->get('pmt_test_customer_key');
+        } else {
+            $this->key = $this->config->get('pmt_real_customer_key');
+        }
+        $signature_check = sha1($this->key.$temp['account_id'].$temp['api_version'].$temp['event'].$temp['data']['id']);
+        if ($signature_check != $temp['signature'] ){
+          //hack detected - not implemented yet
+          die('ERROR - Hack attempt detected');
+        }
+
         $order_id = $data['order_id'];
         $event = $temp['event'];
 
         //we got a new correct sale
         if ($event == 'charge.created') {
             $this->load->model('checkout/order');
-        /* encrypted version
-                // e is the encrypted order ID
-                $e = $order_id;
-
-
-                // load encryption component and checkout modeul
-                $this->load->library('encryption');
-
-
-                // Create new encryption object and try to decrypt order value
-                $encryption = new Encryption($this->config->get('config_encryption'));
-
-                if ($e) {
-                    $order_id = $encryption->decrypt($e);
-                } else {
-                    $order_id = 0;
-                }
-
-                // Hack detection
-                if(!$order_id) die('ERROR - Hack attempt detected');
-                */
                 // Load order, and verify the order has not been processed before, if it has, go to success page
                 $order_info = $this->model_checkout_order->getOrder($order_id);
                 //version 2

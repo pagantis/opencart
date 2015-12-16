@@ -20,6 +20,18 @@
               <div class="content">
                 <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form">
                   <table class="form">
+
+                    <tr>
+<td colspan="10">Paga+Tarde es una plataforma de financiación online. Escoge Paga+Tarde como tu método de pago en OpenCart para permitir el pago a plazos.</td>
+                    </tr>
+                    <tr>
+                      <td colspan="10">
+                      <div class="buttons">
+                      <a class="button" onclick="window.open('https://bo.pagamastarde.com')">Login al panel de Paga+Tarde</a>
+                      <a class="button" onclick="window.open('http://docs.pagamastarde.com/')">Documentación</a>
+                    </div>
+                  </td>
+                    </tr>
                     <tr>
                       <td><span class="required">*</span> <?php echo $test_customer_code; ?></td>
                       <td><input type="text" name="pmt_test_customer_code" value="<?php echo $pmt_test_customer_code; ?>"  id="test_customer_code" placeholder="<?php echo $test_customer_code; ?>"/>

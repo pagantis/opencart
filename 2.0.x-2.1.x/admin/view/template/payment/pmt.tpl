@@ -39,6 +39,21 @@
                 <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form-authorizenet-sim" class="form-horizontal">
 
 
+                  <div class="form-group required">
+
+                    <div class="col-sm-10">
+                      Paga+Tarde es una plataforma de financiación online. Escoge Paga+Tarde como tu método de pago en OpenCart para permitir el pago a plazos.
+                    </div>
+                    <div class="col-sm-10">&nbsp;</div>
+                    <div class="col-sm-10">
+                      <button class="btn btn-primary" type="button" onclick="window.open('https://bo.pagamastarde.com')">Login al panel de Paga+Tarde</button>
+                      <button class="btn btn-primary" type="button" onclick="window.open('http://docs.pagamastarde.com/')">Documentación</button>
+
+                      </div>
+                  </div>
+
+
+
 
 
                   <div class="form-group required">
