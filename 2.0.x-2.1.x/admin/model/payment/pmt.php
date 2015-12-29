@@ -14,10 +14,13 @@ class ModelPaymentPmt extends Model
 
         $method_data = array();
 
+        //original message
+        $financia = $this->language->get('text_title');
+
         if ($status) {
             $method_data = array(
                 'code' => 'pmt',
-                'title' => $this->language->get('text_title'),
+                'title' => $financia,
             'terms' => '',
                 'sort_order' => $this->config->get('pmt_sort_order'),
               );
