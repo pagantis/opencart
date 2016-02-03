@@ -8,10 +8,10 @@ $_['text_success'] = 'Success: You have modified your payment details!';
 $_['text_pmt'] = '<img src="view/image/payment/logo_pmt.png" alt="PagaMasTarde" title="PagaMasTarde" style="border: 1px solid #EEEEEE;" />';
 
 // Entry
-$_['test_customer_code'] = 'Test customer code';
-$_['test_customer_key'] = 'Test customer key';
-$_['real_customer_code'] = 'Real customer code';
-$_['real_customer_key'] = 'Real customer key';
+$_['test_customer_code'] = 'Test Public Key';
+$_['test_customer_key'] = 'Test Secret Key';
+$_['real_customer_code'] = 'Real Public Key';
+$_['real_customer_key'] = 'Real Secret Key';
 $_['text_edit'] = 'Edit Paga Mas Tarde';
 $_['entry_test'] = 'Test Mode';
 $_['entry_discount'] = 'Descuento - asumir comisiones';
@@ -22,10 +22,10 @@ $_['entry_order_status'] = 'Order Status Completed:<br /><span class="help">This
 
 // Error
 $_['error_permission'] = 'Warning: You do not have permission to modify this payment gateway!';
-$_['error_test_customer_code'] = 'Test customer code required';
-$_['error_test_customer_key'] = 'Test customer code required';
-$_['error_real_customer_code'] = 'Real customer code required';
-$_['error_real_customer_key'] = 'Real customer code key required';
+$_['error_test_customer_code'] = 'Test Public Key';
+$_['error_test_customer_key'] = 'Test Secret Key';
+$_['error_real_customer_code'] = 'Real Public Key';
+$_['error_real_customer_key'] = 'Real Secret Key';
 
 //Tips
 $_['tip'] = 'Rembember!';
