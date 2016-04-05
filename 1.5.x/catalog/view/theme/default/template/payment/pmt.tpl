@@ -25,7 +25,7 @@ foreach ($products as $i => $p ){
 <input type="hidden" name="signature" value="<?php echo $signature; ?>" />
 <input type="hidden" name="callback_url" value="<?php echo $callback; ?>" />
 <input type="hidden" name="discount[full]" value="<?php echo $discount; ?>" />
-<input type="hidden" name="phone" value="<?php echo $phone; ?>" />
+<input type="hidden" name="mobile_phone" value="<?php echo $mobile_phone; ?>" />
 </form>
 <div class="buttons">
     <div class="right">
