@@ -63,13 +63,19 @@ class ControllerPaymentPmt extends Controller
                 $data['redirector_success'] = HTTPS_SERVER.'index.php?route=payment/pmt/success&';
                 //$data['redirector_success'] = urlencode($enc);
                 $data['redirector_failure'] = HTTPS_SERVER.'index.php?route=payment/pmt/failure&';
+                $data['cancelled_url'] = HTTPS_SERVER.'index.php?route=checkout/checkout&';
 
                 //adresss
 
                 $data['street'] = $order_info['payment_address_1'].' '.$order_info['payment_address_2'];
-        $data['city'] = $order_info['payment_city'];
-        $data['province'] = $order_info['payment_zone'];
-        $data['citycode'] = $order_info['payment_postcode'];
+                $data['city'] = $order_info['payment_city'];
+                $data['province'] = $order_info['payment_zone'];
+                $data['citycode'] = $order_info['payment_postcode'];
+
+                $data['sstreet'] = $order_info['shipping_address_1'].' '.$order_info['shipping_address_2'];
+                $data['scity'] = $order_info['shipping_city'];
+                $data['sprovince'] = $order_info['shipping_zone'];
+                $data['scitycode'] = $order_info['shipping_postcode'];
 
                 //locale
                 $data['locale'] = strtolower($order_info['language_code']);
@@ -127,8 +133,7 @@ class ControllerPaymentPmt extends Controller
                 $data['callback'] = HTTPS_SERVER.'index.php?route=payment/pmt/callback';
 
 
-        $dataToEncode = $data['customer_key'].$data['customer_code'].$data['order_id'].$data['total'].$data['currency_code'].$data['redirector_success'].$data['redirector_failure'].$data['callback'].$data['discount'];
-
+        $dataToEncode = $data['customer_key'].$data['customer_code'].$data['order_id'].$data['total'].$data['currency_code'].$data['redirector_success'].$data['redirector_failure'].$data['callback'].$data['discount'].$data['cancelled_url'];
         $data['signature'] = sha1($dataToEncode);
                 //form url
                 $data['action'] = 'https://pmt.pagantis.com/v1/installments';
@@ -175,7 +180,8 @@ class ControllerPaymentPmt extends Controller
             $this->key = $this->config->get('pmt_real_customer_key');
         }
         $signature_check = sha1($this->key.$temp['account_id'].$temp['api_version'].$temp['event'].$temp['data']['id']);
-        if ($signature_check != $temp['signature'] ){
+        $signatureCheckSha512 = hash('sha512', $this->key.$temp['account_id'].$temp['api_version'].$temp['event'].$temp['data']['id']);
+        if ($signature_check != $temp['signature'] && $signatureCheckSha512 != $temp['signature'] ){
           //hack detected - not implemented yet
           die('ERROR - Hack attempt detected');
         }

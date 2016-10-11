@@ -21,11 +21,16 @@ foreach ($products as $i => $p ){
 <input type="hidden" name="address[city]" value="<?php echo $city; ?>" />
 <input type="hidden" name="address[province]" value="<?php echo $province; ?>" />
 <input type="hidden" name="address[zipcode]" value="<?php echo $citycode; ?>" />
+<input type="hidden" name="shipping[street]" value="<?php echo $sstreet; ?>" />
+<input type="hidden" name="shipping[city]" value="<?php echo $scity; ?>" />
+<input type="hidden" name="shipping[province]" value="<?php echo $sprovince; ?>" />
+<input type="hidden" name="shipping[zipcode]" value="<?php echo $scitycode; ?>" />
 <input type="hidden" name="account_id" value="<?php echo $customer_code; ?>" />
 <input type="hidden" name="signature" value="<?php echo $signature; ?>" />
 <input type="hidden" name="callback_url" value="<?php echo $callback; ?>" />
 <input type="hidden" name="discount[full]" value="<?php echo $discount; ?>" />
 <input type="hidden" name="mobile_phone" value="<?php echo $mobile_phone; ?>" />
+<input type="hidden" name="cancelled_url" value="<?php echo $cancelled_url; ?>" />
 </form>
 <div class="buttons">
     <div class="pull-right">
