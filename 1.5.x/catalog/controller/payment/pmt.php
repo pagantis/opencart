@@ -66,13 +66,19 @@ class ControllerPaymentPmt extends Controller
                 $this->data['redirector_success'] = HTTPS_SERVER.'index.php?route=payment/pmt/success&';
                 //$this->data['redirector_success'] = urlencode($enc);
                 $this->data['redirector_failure'] = HTTPS_SERVER.'index.php?route=payment/pmt/failure&';
+                $this->data['cancelled_url'] = HTTPS_SERVER.'index.php?route=checkout/checkout&';
 
                 //adresss
 
                 $this->data['street'] = $order_info['payment_address_1'].' '.$order_info['payment_address_2'];
-        $this->data['city'] = $order_info['payment_city'];
-        $this->data['province'] = $order_info['payment_zone'];
-        $this->data['citycode'] = $order_info['payment_postcode'];
+                $this->data['city'] = $order_info['payment_city'];
+                $this->data['province'] = $order_info['payment_zone'];
+                $this->data['citycode'] = $order_info['payment_postcode'];
+
+                $this->data['sstreet'] = $order_info['shipping_address_1'].' '.$order_info['shipping_address_2'];
+                $this->data['scity'] = $order_info['shipping_city'];
+                $this->data['sprovince'] = $order_info['shipping_zone'];
+                $this->data['scitycode'] = $order_info['shipping_postcode'];
 
                 //locale
                 $this->data['locale'] = strtolower($order_info['language_code']);
@@ -130,9 +136,9 @@ class ControllerPaymentPmt extends Controller
                 $this->data['callback'] = HTTPS_SERVER.'index.php?route=payment/pmt/callback';
 
 
-        $dataToEncode = $this->data['customer_key'].$this->data['customer_code'].$this->data['order_id'].$this->data['total'].$this->data['currency_code'].$this->data['redirector_success'].$this->data['redirector_failure'].$this->data['callback'].$this->data['discount'];
+        $dataToEncode = $this->data['customer_key'].$this->data['customer_code'].$this->data['order_id'].$this->data['total'].$this->data['currency_code'].$this->data['redirector_success'].$this->data['redirector_failure'].$this->data['callback'].$this->data['discount'].$this->data['cancelled_url'];
 
-        $this->data['signature'] = sha1($dataToEncode);
+        $this->data['signature'] = hash('sha512', $dataToEncode);
                 //form url
                 $this->data['action'] = 'https://pmt.pagantis.com/v1/installments';
 
@@ -192,7 +198,8 @@ class ControllerPaymentPmt extends Controller
             $this->key = $this->config->get('pmt_real_customer_key');
         }
         $signature_check = sha1($this->key.$temp['account_id'].$temp['api_version'].$temp['event'].$temp['data']['id']);
-        if ($signature_check != $temp['signature'] ){
+        $signatureCheckSha512 = hash('sha512', $this->key.$temp['account_id'].$temp['api_version'].$temp['event'].$temp['data']['id']);
+        if ($signature_check != $temp['signature'] && $signatureCheckSha512 != $temp['signature'] ){
           //hack detected - not implemented yet
           die('ERROR - Hack attempt detected');
         }
