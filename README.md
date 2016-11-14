@@ -1,7 +1,7 @@
 pagamastarde-opencart
 =====================
 
-Módulo de pago de Paga+Tarde para OpenCart (v.1.5.x - 2.x)
+Módulo de pago de Paga+Tarde para OpenCart (v.1.5.x - 2.3.x)
 
 ## Instrucciones de Instalación
 
