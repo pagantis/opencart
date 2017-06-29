@@ -10,6 +10,7 @@ $_['text_title'] = 'Finaciación con Paga+Tarde <div class="PmtSimulator" data-p
     jQuery( document ).ajaxComplete(function() {
          setTimeout(function(){  pmtSimulator.simulator_app.updateSimulators();  }, 1500);
     });
+    pmtClient.events.send('checkout', { basketAmount: "%f" });
     </script>';
 $_['text_testmode'] = 'PAYMENT GATEWAY IS IN TEST MODE - NO CHARGE WILL BE MADE';
 $_['terms'] = '';
