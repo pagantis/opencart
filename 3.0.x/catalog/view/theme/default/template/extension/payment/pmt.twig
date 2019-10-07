@@ -1,0 +1,74 @@
+<form style="" action="{{ action }}" method="post" id="pmtCheckout">
+    <!-- configuration parameters -->
+    <input type="hidden" name="account_id" value="{{ customer_code }}" />
+    <input type="hidden" name="currency" value="{{ currency_code }}" />
+    <input type="hidden" name="ok_url" value="{{ redirector_success }}" />
+    <input type="hidden" name="nok_url" value="{{ redirector_failure }}" />
+    <input type="hidden" name="cancelled_url" value="{{ cancelled_url }}" />
+    <input type="hidden" name="callback_url" value="{{ callback }}" />
+    <input type="hidden" name="order_id" value="{{ order_id }}" />
+    <input type="hidden" name="amount" value="{{ total }}" />
+    <input type="hidden" name="signature" value="{{ signature }}" />
+    <input type="hidden" name="description" value="{{ description }}" />
+    <input type="hidden" name="locale" value="{{ locale }}" />
+    <input type="hidden" name="discount[full]" value="{{ discount }}" />
+
+    <!-- data used to prefill the form -->
+    <input type="hidden" name="full_name" value="{{ full_name }}" />
+    <input type="hidden" name="email" value="{{ email }}" />
+    <input type="hidden" name="mobile_phone" value="{{ mobile_phone }}" />
+    <input type="hidden" name="address[street]" value="{{ street }}" />
+    <input type="hidden" name="address[city]" value="{{ city }}" />
+    <input type="hidden" name="address[zipcode]" value="{{ citycode }}" />
+
+    <!-- customer information -->
+    <input name="loginCustomer[is_guest]" type="hidden" value="{{ is_guest }}">
+    <input name="loginCustomer[email]" type="hidden" value="{{ email }}">
+    <input name="loginCustomer[full_name]" type="hidden" value="{{ customer_full_name }}">
+    <input name="metadata[member_since]" type="hidden" value="{{ member_since }}">
+    <input name="loginCustomer[num_orders]" type="hidden" value="{{ num_orders }}">
+    <input name="loginCustomer[amount_orders]" type="hidden" value="{{ amount_orders }}">
+    <input name="loginCustomer[amount_refunded]" type="hidden" value="{{ amount_refunded }}">
+    <input name="loginCustomer[num_full_refunds]" type="hidden" value="{{ num_full_refunds }}">
+
+    <!-- cart items -->
+    {% for key, value in products %}
+    <input name="items[{{ key }}][description]" type="hidden" value="{{ value.description }}">
+    <input name="items[{{ key }}][quantity]" type="hidden" value="{{ value.quantity }}">
+    <input name="items[{{ key }}][amount]" type="hidden" value="{{ value.amount }}">
+    {% endfor %}
+
+
+    <!-- shipping information -->
+    <input type="hidden" name="shipping[street]" value="{{ sstreet }}" />
+    <input type="hidden" name="shipping[city]" value="{{ scity }}" />
+    <input type="hidden" name="shipping[province]" value="{{ sprovince }}" />
+    <input type="hidden" name="shipping[zipcode]" value="{{ scitycode }}" />
+    <input name="shipping[full_name]" type="hidden" value="{{ sfull_name }}">
+    <input name="shipping[company]" type="hidden" value="{{ scompany }}">
+
+    <!-- billing information -->
+    <input type="hidden" name="billing[street]" value="{{ street }}" />
+    <input type="hidden" name="billing[city]" value="{{ city }}" />
+    <input type="hidden" name="billing[province]" value="{{ province }}" />
+    <input type="hidden" name="billing[zipcode]" value="{{ citycode }}" />
+    <input name="billing[full_name]" type="hidden" value="{{ full_name }}">
+    <input name="billing[company]" type="hidden" value="{{ company }}">
+
+
+    <!-- module information -->
+    <input name="metadata[module_version]" type="hidden" value="{{ module_version }}">
+    <input name="metadata[platform]" type="hidden" value="{{ platform }}"></form>
+<input name="metadata[php]" type="hidden" value="{{ php }}"></form>
+<div class="buttons">
+    <div class="pull-right">
+        <input onclick="confirmSubmit();" value="{{ button_confirm }}" id="button-confirm" class="btn btn-primary" type="button">
+    </div>
+</div>
+<script type="text/javascript">
+    <!--
+    function confirmSubmit() {
+        $('#pmtCheckout').submit();
+    }
+    //-->
+</script>
