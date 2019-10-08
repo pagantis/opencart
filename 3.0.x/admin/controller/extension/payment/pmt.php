@@ -2,6 +2,9 @@
 
 class ControllerExtensionPaymentPmt extends controller
 {
+    /** @var string */
+    const CODE = 'payment_pmt';
+
     /**
      * ControllerPaymentPmt::index().
      *
