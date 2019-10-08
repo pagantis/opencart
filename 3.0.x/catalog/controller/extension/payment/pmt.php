@@ -230,7 +230,7 @@ class ControllerExtensionPaymentPmt extends Controller
 
                 $order_info = $this->model_checkout_order->getOrder($order_id);
                 if ($order_info) {
-                    if ($order_info['order_status_id'] == 0) {
+                    if ($order_info['order_status_id'] == self::ORDER_STATUS) {
                         //RESPONSE OK
                         $response = array (
                             'statusCode' => '200',
