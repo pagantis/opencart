@@ -2,6 +2,13 @@
 
 class ModelExtensionPaymentPmt extends Model
 {
+
+    /**
+     * @param $address
+     * @param $total
+     *
+     * @return array
+     */
     public function getMethod($address, $total)
     {
         $this->load->language('extension/payment/pmt');

@@ -5,9 +5,12 @@ class ControllerExtensionPaymentPmt extends Controller
     private $version = '3.0';
 
     const ORDER_STATUS = 2;
+
+    /**
+     * @return mixed
+     */
     public function index()
     {
-
         $this->load->language('extension/payment/pmt');
 
         $data['text_testmode'] = $this->language->get('text_testmode');
@@ -77,8 +80,7 @@ class ControllerExtensionPaymentPmt extends Controller
         $route = $_GET['route'];
 
         // Set success/fail urls
-        $data['redirector_success'] = $this->url->link('extension/payment/pmt/success');
-        //$data['redirector_success'] = urlencode($enc);
+        $data['redirector_success'] = $this->url->link('extension/payment/pmt/success').'&order_id='.$data['order_id'];
         $data['redirector_failure'] = $this->url->link('checkout/failure');
         $data['cancelled_url'] = $this->url->link('checkout/checkout');
         $data['module_version'] = $this->version;
@@ -157,6 +159,9 @@ class ControllerExtensionPaymentPmt extends Controller
         return $this->load->view('extension/payment/pmt', $data);
     }
 
+    /**
+     * Redirection after a failure process
+     */
     public function failure()
     {
         $this->language->load('payment/pmt');
@@ -166,6 +171,9 @@ class ControllerExtensionPaymentPmt extends Controller
         $this->response->redirect($this->url->link('checkout/failure'));
     }
 
+    /**
+     * Redirection after a successfull process
+     */
     public function success()
     {
         try {
@@ -191,6 +199,9 @@ class ControllerExtensionPaymentPmt extends Controller
         }
     }
 
+    /**
+     * Callback from PMT => ?route=extension/payment/pmt/callback
+     */
     public function callback()
     {
         try {
@@ -210,15 +221,16 @@ class ControllerExtensionPaymentPmt extends Controller
             $order_id = $data['order_id'];
             $pmt_order_id = $data['id'];
             $event = $temp['event'];
-            //we got a new correct sale
             if ($event == 'charge.created') {
                 $this->load->model('checkout/order');
                 // Load order, and verify the order has not been processed before, if it has, go to success page
                 $order_info = $this->model_checkout_order->getOrder($order_id);
                 $order_message = "Order ID=$order_id - PMT order_id=$pmt_order_id";
                 $this->model_checkout_order->addOrderHistory($order_id, self::ORDER_STATUS, $order_message, true);
+
+                $order_info = $this->model_checkout_order->getOrder($order_id);
                 if ($order_info) {
-                    if ($order_info['order_status_id'] != 0) {
+                    if ($order_info['order_status_id'] == 0) {
                         //RESPONSE OK
                         $response = array (
                             'statusCode' => '200',
@@ -254,5 +266,38 @@ class ControllerExtensionPaymentPmt extends Controller
         header('Content-Type: application/json', true);
         echo ($toJson);
         exit();
+    }
+
+    /**
+     * Api controller
+     */
+    public function api()
+    {
+        $response = array();
+        try {
+            if ($_GET['secret' ] == $this->config->get('payment_pmt_secret_key')) {
+                $where_id = (isset($_GET['order_id'])) ? 'and order_id='.$_GET['order_id'] : null;
+                $order_query = $this->db->query("SELECT * FROM ".DB_PREFIX."order where payment_code='pmt' $where_id");
+
+                $data['num_orders'] = $order_query->num_rows;
+                foreach ($order_query->rows as $prev_order) {
+                    $key = $prev_order['order_id'];
+                    $response['message'][$key]['timestamp'] = $prev_order['date_added'];
+                    $response['message'][$key]['order_id'] = $key;
+                    $response['message'][$key]['content'] = $prev_order;
+                }
+            } else {
+                $response['result'] = 'Error';
+            }
+
+            $response = json_encode($response);
+            header("HTTP/1.1 200", true, 200);
+            header('Content-Type: application/json', true);
+            header('Content-Length: '.strlen($response));
+            echo($response);
+            exit();
+        } catch (Exception $e) {
+            die($e->getMessage());
+        }
     }
 }

@@ -1,8 +1,8 @@
 <?php
 // Heading
-$_['heading_title'] = 'Pagantis';
-$_['error_pmt_pagantis_keys'] = 'Please review key credentials';
-$_['text_edit'] = 'Editing Pagantis configuration';
+$_['heading_title'] = 'Paga+Tarde';
+$_['error_pmt_pmt_keys'] = 'Please review key credentials';
+$_['text_edit'] = 'Editing Paga+Tarde configuration';
 
 // Text
 $_['text_payment'] = 'Payment';

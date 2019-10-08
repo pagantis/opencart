@@ -2,23 +2,12 @@
 
 class ModelExtensionPaymentPmt extends Model
 {
-    const CODE = 'payment_pmt';
 
-    public function install()
-    {
-        $defaults['payment_pmt_status'] = 'no';
-        $defaults['payment_pmt_public_key'] = '';
-        $defaults['payment_pmt_secret_key'] = '';
-        //$defaults['payment_pmt_simulator'] = 'yes';
-
-        $this->model_setting_setting->editSetting(self::CODE, $defaults);
-    }
-
-    public function uninstall()
-    {
-        $this->model_setting_setting->deleteSetting(self::CODE);
-    }
-
+    /**
+     * @param $address
+     *
+     * @return array
+     */
     public function getMethod($address)
     {
         $method_data = array();
@@ -30,14 +19,10 @@ class ModelExtensionPaymentPmt extends Model
             $status = false;
         }
 
-        //original message
-        $financia = $this->language->get('text_title');
-
         if ($status) {
             $method_data = array(
                 'code' => 'pmt',
-                'title' => 'blablabla',
-                'terms' => 'blabla'
+                'title' => $this->language->get('text_title')
             );
         }
 

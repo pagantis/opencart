@@ -15,7 +15,7 @@ class ControllerExtensionPaymentPmt extends controller
         }
 
         // Load language file and settings model
-        $this->load->language('extension/payment/pagantis');
+        $this->load->language('extension/payment/pmt');
         $this->load->model('setting/setting');
 
         // Set page title
@@ -26,7 +26,7 @@ class ControllerExtensionPaymentPmt extends controller
             $pk = $this->request->post['payment_pmt_public_key'];
             $sk = $this->request->post['payment_pmt_secret_key'];
             if ($pk =='' || $sk=='') {
-                $data['error_warning'] = $this->language->get('error_pmt_pagantis_keys');
+                $data['error_warning'] = $this->language->get('error_pmt_pmt_keys');
             } else {
                 $this->model_setting_setting->editSetting('payment_pmt', $this->request->post);
                 $data['error_success'] =  $this->language->get('text_success');
@@ -117,5 +117,30 @@ class ControllerExtensionPaymentPmt extends controller
         $data['column_left'] = $this->load->controller('common/column_left');
         $data['footer'] = $this->load->controller('common/footer');
         $this->response->setOutput($this->load->view('extension/payment/pmt', $data));
+    }
+
+    /**
+     * Install code
+     */
+    public function install()
+    {
+        $this->load->model('setting/setting');
+
+        $defaults['payment_pmt_status'] = 'no';
+        $defaults['payment_pmt_public_key'] = '';
+        $defaults['payment_pmt_secret_key'] = '';
+        //$defaults['payment_pmt_simulator'] = 'yes';
+
+        $this->model_setting_setting->editSetting(self::CODE, $defaults);
+    }
+
+    /**
+     * Uninstall code
+     */
+    public function uninstall()
+    {
+        $this->load->model('setting/setting');
+
+        $this->model_setting_setting->deleteSetting(self::CODE);
     }
 }
