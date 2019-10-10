@@ -6,7 +6,7 @@ Módulo de pago de Paga+Tarde para OpenCart (v.1.5.x - 2.3.x - v3.0.x)
 ## Instrucciones de Instalación
 
 1. Crea tu cuenta en Pagamastarde.com si aún no la tienes [desde aquí](https://bo.pagamastarde.com)
-2. Descarga el módulo de [aquí](https://github.com/pagantis-team/pagamastarde-opencart/releases/)
+2. Descarga el módulo de [aquí](https://github.com/pagantis/pagamastarde-opencart/releases/)
 3. Sube el contenido de la carpeta que coincida con tu versión de opencart al directorio root ( / ) de tu instalación opencart.
 4. Si tu tienda tiene más idiomas, copia el fichero de idiomas en la carpeta correspondiente y edítalo para ajustar los textos
   - includes/languages/OTRO_IDIOMA/modules/payment/pmt.php
