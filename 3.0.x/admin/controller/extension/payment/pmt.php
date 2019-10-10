@@ -103,19 +103,6 @@ class ControllerExtensionPaymentPmt extends controller
             $data['payment_pmt_simulator'] = $this->config->get('payment_pmt_simulator');
         }
 
-        /*$data['simulator_yes'] = 'unchecked';
-        $data['simulator_no'] = 'unchecked';
-        if($data['payment_pmt_simulator'] === 'yes') {
-            $data['simulator_yes'] = 'checked';
-        } else {
-            $data['simulator_no'] = 'checked';
-        }*/
-
-        // Render template
-        //v1.5.x version
-        //$this->template = 'payment/pmt.tpl';
-        //v2.0 version
-        //v2.0
         $data['header'] = $this->load->controller('common/header');
         $data['column_left'] = $this->load->controller('common/column_left');
         $data['footer'] = $this->load->controller('common/footer');

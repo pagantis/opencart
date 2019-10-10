@@ -75,8 +75,6 @@ class ControllerExtensionPaymentPmt extends Controller
         $data['email'] = $order_info['email'];
 
         $data['order_id'] = $this->session->data['order_id'];
-        //encrypted version
-        //$data['order_id'] =$enc;
         $route = $_GET['route'];
 
         // Set success/fail urls
