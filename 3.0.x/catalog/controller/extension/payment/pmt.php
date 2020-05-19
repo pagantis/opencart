@@ -102,6 +102,7 @@ class ControllerExtensionPaymentPmt extends Controller
         $data['locale'] = strtolower($order_info['language_code']);
         $data['is_guest'] = $order_info['customer_id'] == 0 ? 'true' : 'false';
         $data['locale'] = substr($data['locale'], 0, 2);
+        $data['purchase_country'] = strtoupper($order_info['payment_iso_code_2']);
 
         //shipping price
         $i = 0;
