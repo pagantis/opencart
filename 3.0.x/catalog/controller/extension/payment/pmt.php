@@ -2,7 +2,7 @@
 class ControllerExtensionPaymentPmt extends Controller
 {
     private $error;
-    private $version = '3.0';
+    private $version = '3.1';
 
     const ORDER_STATUS = 2;
 
