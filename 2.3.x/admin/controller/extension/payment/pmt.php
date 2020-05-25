@@ -21,6 +21,12 @@ class ControllerExtensionPaymentPmt extends controller
         // Set page title
         $this->document->setTitle($this->language->get('heading_title'));
 
+        $this->model_setting_event->addEvent(
+            'extension_pmt',
+            'catalog/controller/checkout/checkout/before',
+            'extension/payment/pmt/eventLoadCheckoutJs'
+        );
+
         // Process settings if form submitted
         if (($this->request->server['REQUEST_METHOD'] == 'POST') && ($this->validate())) {
             $this->model_setting_setting->editSetting('pmt', $this->request->post);

@@ -1,10 +1,9 @@
 <?php
 // Text
-$_['text_title'] = 'Instant financing 
+$_['text_title'] = 'Financiación con Pagantis
 
 <div class="customSimulator"></div>
 <script>
-
     options = {
         //IMPORTANT: Set your public key
         "publicKey": "%s",
@@ -13,7 +12,7 @@ $_['text_title'] = 'Instant financing
         "skin": pgSDK.simulator.skins.BLUE,
         "itemAmount": "%f",
         "itemQuantity": "1",
-        "locale": "en",
+        "locale": "es",
         "country": "es",
     }
     pgSDK.simulator.init(options);';

@@ -1,7 +1,9 @@
 <?php
+
 class ModelExtensionPaymentPmt extends Model
 {
-    public function getMethod($address, $total) {
+    public function getMethod($address, $total)
+    {
         $this->load->language('extension/payment/pmt');
 
         if ($this->config->get('pmt_status')) {
@@ -14,12 +16,13 @@ class ModelExtensionPaymentPmt extends Model
 
         //discount
         if ($this->config->get('pmt_discount')) {
-          $data_bool = 1;
+            $data_bool = 1;
         } else {
-          $data_bool = 0;
+            $data_bool = 0;
         }
 
-        $financia = sprintf($this->language->get('text_title'), $data_bool, $total);
+        $publicKey = $this->config->get('payment_pmt_public_key');
+        $financia = sprintf($this->language->get('method_title'), $publicKey, $total);
 
         //original message
         //$financia = $this->language->get('text_title');

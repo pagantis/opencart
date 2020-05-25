@@ -78,6 +78,7 @@ class ControllerExtensionPaymentPmt extends Controller
 
     //locale
     $data['locale'] = strtolower($order_info['language_code']);
+    $data['purchase_country'] = strtoupper($order_info['payment_iso_code_2']);
 
     // we have a list of supported localtes, if locale is not in the list we degault to en.
 
