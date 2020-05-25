@@ -47,7 +47,7 @@
                     <div class="col-sm-10">&nbsp;</div>
                     <div class="col-sm-10">
                       <button class="btn btn-primary" type="button" onclick="window.open('https://bo.pagantis.com')">Login al panel de Paga+Tarde</button>
-                      <button class="btn btn-primary" type="button" onclick="window.open('http://developer.pagantis.com/platorms/open-cart')">Documentación</button>
+                      <button class="btn btn-primary" type="button" onclick="window.open('http://developer.pagantis.com/platforms/open-cart')">Documentación</button>
 
                       </div>
                   </div>
