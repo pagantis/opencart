@@ -1,13 +1,13 @@
 <?php
 // Heading
-$_['heading_title'] = 'Paga+Tarde';
+$_['heading_title'] = 'Pagantis';
 $_['error_pmt_pmt_keys'] = 'Please review key credentials';
-$_['text_edit'] = 'Editing Paga+Tarde configuration';
+$_['text_edit'] = 'Editing Pagantis configuration';
 
 // Text
 $_['text_payment'] = 'Payment';
 $_['text_success'] = 'Success: You have modified your payment details!';
-$_['text_pmt'] = '<img src="view/image/payment/logo_pmt.png" alt="PagaMasTarde" title="PagaMasTarde" style="border: 1px solid #EEEEEE;" />';
+$_['text_pmt'] = '<img src="view/image/payment/logo_pg.png" alt="Pagantis" title="Pagantis" style="border: 1px solid #EEEEEE;" />';
 
 // Entry
 $_['test_customer_code'] = 'Test Public Key';

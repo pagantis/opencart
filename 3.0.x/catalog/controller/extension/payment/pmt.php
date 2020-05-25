@@ -299,4 +299,12 @@ class ControllerExtensionPaymentPmt extends Controller
             die($e->getMessage());
         }
     }
+
+    /**
+     * Add cdn for simulator
+     */
+    public function eventLoadCheckoutJs($route, &$data)
+    {
+        $this->document->addScript('https://cdn.pagantis.com/js/pg-v2/sdk.js');
+    }
 }

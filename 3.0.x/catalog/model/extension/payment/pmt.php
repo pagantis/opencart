@@ -19,12 +19,13 @@ class ModelExtensionPaymentPmt extends Model
             $status = false;
         }
 
+        $publicKey = $this->config->get('payment_pmt_public_key');
+        $financia = sprintf($this->language->get('method_title'), $publicKey, $total);
         $method_data = array();
-
         if ($status) {
             $method_data = array(
                 'code' => 'pmt',
-                'title' => $this->language->get('method_title'),
+                'title' => $financia,
                 'sort_order' => 1
             );
         }
