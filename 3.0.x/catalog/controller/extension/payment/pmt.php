@@ -2,7 +2,7 @@
 class ControllerExtensionPaymentPmt extends Controller
 {
     private $error;
-    private $version = '3.0';
+    private $version = '3.1';
 
     const ORDER_STATUS = 2;
 
@@ -102,6 +102,7 @@ class ControllerExtensionPaymentPmt extends Controller
         $data['locale'] = strtolower($order_info['language_code']);
         $data['is_guest'] = $order_info['customer_id'] == 0 ? 'true' : 'false';
         $data['locale'] = substr($data['locale'], 0, 2);
+        $data['purchase_country'] = strtoupper($order_info['payment_iso_code_2']);
 
         //shipping price
         $i = 0;
@@ -297,5 +298,13 @@ class ControllerExtensionPaymentPmt extends Controller
         } catch (Exception $e) {
             die($e->getMessage());
         }
+    }
+
+    /**
+     * Add cdn for simulator
+     */
+    public function eventLoadCheckoutJs($route, &$data)
+    {
+        $this->document->addScript('https://cdn.pagantis.com/js/pg-v2/sdk.js');
     }
 }

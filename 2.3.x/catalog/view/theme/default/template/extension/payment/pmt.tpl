@@ -31,6 +31,7 @@ foreach ($products as $i => $p ){
 <input type="hidden" name="discount[full]" value="<?php echo $discount; ?>" />
 <input type="hidden" name="mobile_phone" value="<?php echo $mobile_phone; ?>" />
 <input type="hidden" name="cancelled_url" value="<?php echo $cancelled_url; ?>" />
+<input type="hidden" name="purchase_country" value="<?php echo $purchase_country; ?>" />
 </form>
 <div class="buttons">
     <div class="pull-right">

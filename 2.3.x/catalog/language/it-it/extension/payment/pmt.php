@@ -1,6 +1,6 @@
 <?php
 // Text
-$_['text_title'] = 'Instant financing 
+$_['text_title'] = 'Pagamento a rate 
 
 <div class="customSimulator"></div>
 <script>
@@ -13,10 +13,11 @@ $_['text_title'] = 'Instant financing
         "skin": pgSDK.simulator.skins.BLUE,
         "itemAmount": "%f",
         "itemQuantity": "1",
-        "locale": "en",
-        "country": "es",
+        "locale": "it",
+        "country": "it",
     }
-    pgSDK.simulator.init(options);';
+    pgSDK.simulator.init(options);
+    ';
 $_['text_testmode'] = 'PAYMENT GATEWAY IS IN TEST MODE - NO CHARGE WILL BE MADE';
 $_['terms'] = '';
 $_['heading_fail'] = 'Transaction Failed!';
