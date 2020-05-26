@@ -1,6 +1,6 @@
 <?php
 // Text
-$_['text_title'] = 'Pagamento a rate 
+$_['method_title'] = 'Pagamento a rate 
 
 <div class="customSimulator"></div>
 <script>
