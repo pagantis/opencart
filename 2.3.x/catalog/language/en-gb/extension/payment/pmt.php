@@ -1,6 +1,6 @@
 <?php
 // Text
-$_['text_title'] = 'Instant financing 
+$_['method_title'] = 'Instant financing 
 
 <div class="customSimulator"></div>
 <script>
