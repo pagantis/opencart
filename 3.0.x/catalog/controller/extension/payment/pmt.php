@@ -2,7 +2,7 @@
 class ControllerExtensionPaymentPmt extends Controller
 {
     private $error;
-    private $version = '3.1';
+    private $version = '3.2';
 
     const ORDER_STATUS = 2;
 
@@ -34,19 +34,19 @@ class ControllerExtensionPaymentPmt extends Controller
         $data['amount_refunded'] = 0;
         $data['num_full_refunds'] = 0;
         if ($order_info['customer_id'] > 0) {
-            $customer_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "customer WHERE
+            $customer_query = $this->db->query("SELECT * FROM `".DB_PREFIX."customer` WHERE
               customer_id = " . (int)$order_info['customer_id']);
             $data['member_since'] = substr($customer_query->row['date_added'], 0, 10);
-            $order_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order WHERE
+            $order_query = $this->db->query("SELECT * FROM `".DB_PREFIX."order` WHERE
               order_status_id in (2,3,5,11,12,13,15,16)
               and customer_id = " . (int)$order_info['customer_id']);
         } else {
-            $customer_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "customer WHERE
+            $customer_query = $this->db->query("SELECT * FROM `".DB_PREFIX."customer` WHERE
                 email = '".$order_info['email']."'");
             if ($customer_query->num_rows > 0) {
                 $data['member_since'] = substr($customer_query->row['date_added'], 0, 10);
             }
-            $order_query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order WHERE
+            $order_query = $this->db->query("SELECT * FROM `".DB_PREFIX."order WHERE
               order_status_id in (2,3,5,11,12,13,15,16)
               and email = '" . $order_info['email']."'");
         }
@@ -276,7 +276,7 @@ class ControllerExtensionPaymentPmt extends Controller
         try {
             if ($_GET['secret' ] == $this->config->get('payment_pmt_secret_key')) {
                 $where_id = (isset($_GET['order_id'])) ? 'and order_id='.$_GET['order_id'] : null;
-                $order_query = $this->db->query("SELECT * FROM ".DB_PREFIX."order where payment_code='pmt' $where_id");
+                $order_query = $this->db->query("SELECT * FROM `".DB_PREFIX."order` where payment_code='pmt' $where_id");
 
                 $data['num_orders'] = $order_query->num_rows;
                 foreach ($order_query->rows as $prev_order) {
