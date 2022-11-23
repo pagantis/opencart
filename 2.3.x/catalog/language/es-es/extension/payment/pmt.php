@@ -1,6 +1,6 @@
 <?php
 // Text
-$_['text_title'] = 'Financiación con Pagantis
+$_['method_title'] = 'Financiación con Pagantis
 
 <div class="customSimulator"></div>
 <script>
